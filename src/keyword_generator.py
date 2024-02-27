@@ -33,8 +33,8 @@ class KeywordGenerator(object):
         self.parameters = {
             "model": model,
             "messages": [
-                {"role": "system", "content": f"You are a helpful assistant trained on the task of labelling chemical descriptions of the topics of a certain topic model. For example, if I give you the chemical description {example_1[0]}, you will give me the label {example_1[1]}. Just answer with the label, no need to write anything else."
-                 },
+                {"role": "system", "content": f"You are a helpful assistant trained to provide important keywords related to a specific topic. For instance, if I ask for the 10 most important keywords related to AI, you will respond with a list of relevant keywords. Just provide the keywords in your response, no need for additional information."
+                },
             ],
             "temperature": temperature,
             "max_tokens": max_tokens,
@@ -92,36 +92,19 @@ class KeywordGenerator(object):
         )
         return response.choices[0].message.content
 
-    def get_label(self, chem_desc: str) -> str:
-        """Get a label for a chemical description.
+    def get_kwds(self, Cat: str, num_kwds: int) -> str:
+        """Get Keywords related with a certain cathegory
 
         Parameters
         ----------
-        chem_desc : str
-            A chemical description.
+        Cat : str
+            The cathegory 
 
         Returns
         -------
         str
-            A label for the chemical description.
+            A list of kwds 
         """
 
-        gpt_prompt = f"Give me a label for this set of words: {chem_desc}"
+        gpt_prompt = f"Give me a list with the most important {num_kwds} keywords related to: {Cat}"
         return self._promt(gpt_prompt)
-
-    def get_labels(self, chem_descs: list) -> list:
-        """Get labels for a list of chemical descriptions.
-
-        Parameters
-        ----------
-        chem_descs : list
-            A list of chemical descriptions.
-
-        Returns
-        -------
-        list
-            A list of labels for the chemical descriptions.
-        """
-
-        gpt_prompt = f"Give me a label for each of the following set of words and return it as a Python list with the labels: {chem_descs}"
-        return eval(self._promt(gpt_prompt))
