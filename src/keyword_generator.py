@@ -27,13 +27,12 @@ class KeywordGenerator(object):
             api_key=self._openai_api_key
         )
 
-        example_1 = ('network, traffic, vehicle, energy, communication, service, deep, reinforcement, sensor, wireless, road, channel, management, node, UAV',
-                     'Traffic Management and Autonomous Driving')
+        example_1 = ('Give me a list with the most important 2 keywords related to: AI, machine learning, neural Networks')
 
         self.parameters = {
             "model": model,
             "messages": [
-                {"role": "system", "content": f"You are a helpful assistant trained to provide important keywords related to a specific topic. For instance, if I ask for the 10 most important keywords related to AI, you will respond with a list of relevant keywords. Just provide the keywords in your response, no need for additional information."
+                {"role": "system", "content": f"You are a helpful assistant trained to provide important keywords related to a specific topic. For instance, if I ask for the 10 most important keywords related to AI, you will respond with a string containing an array of the most relevant keywords. Just provide the keywords in lowercase and separated with a comma in your response, no need for additional information. Do not enumerate yor solution."
                 },
             ],
             "temperature": temperature,

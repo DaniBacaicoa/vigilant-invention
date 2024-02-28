@@ -21,3 +21,6 @@ openai==1.10.0
 notebook
 python-dotenv
 ipykernel
+pandas
+networkx[default]
+torch_geometric
