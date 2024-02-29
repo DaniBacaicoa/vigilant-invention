@@ -27,12 +27,13 @@ class KeywordGenerator(object):
             api_key=self._openai_api_key
         )
 
-        example_1 = ('Give me a list with the most important 2 keywords related to: AI','machine learning, neural Networks')
+        example_1 = ("I would need a weighted list of 5 keywords, assigning a weight to each keyword according to its relevance to the concept of 'AI'",
+        'machine learning (5), neural networks (4), natural language processing (4), deep learning (4), automation (3)')
 
         self.parameters = {
             "model": model,
             "messages": [
-                {"role": "system", "content": f"You are a helpful assistant trained to provide the most specific keywords related to a given topic. For expample, if I ask {example_1[0]}, you will respond {example_1[1]}. Do not include the word of the topic asked for. Just provide the keywords ordered by their importance, from higher to lower, in lowercase and separated with a comma in your response, no need for additional information. Do not enumerate your solution. If you cannot give the number of keywords asked for, just stop and do not repeat them"
+                {"role": "system", "content": f"You are a helpful assistant trained to provide the most relevant keywords related to a given concept. For expample, if I ask {example_1[0]}, you will respond {example_1[1]}. Do not include the word of the topic asked for. Just provide the keywords ordered by their importance with the assigned weight aside between parenthesis, from higher to lower, in lowercase and separated with a comma in your response. Do not enumerate your solution. If you cannot give the number of keywords asked for, just stop and do not repeat them"
                 },
             ],
             "temperature": temperature,
@@ -105,5 +106,5 @@ class KeywordGenerator(object):
             A list of kwds 
         """
 
-        gpt_prompt = f"Give me a list with the most important {num_kwds} keywords related to: {Cat}"
+        gpt_prompt = f"I would need a weighted list of {num_kwds} keywords, assigning a weight to each keyword according to its relevance to the concept of '{Cat}'"
         return self._promt(gpt_prompt)
