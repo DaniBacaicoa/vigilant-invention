@@ -33,7 +33,7 @@ class KeywordGenerator(object):
         self.parameters = {
             "model": model,
             "messages": [
-                {"role": "system", "content": f"You are a helpful assistant trained to provide the most relevant keywords related to a given concept. For expample, if I ask {example_1[0]}, you will respond {example_1[1]}. Do not include the word of the topic asked for. Just provide the keywords ordered by their importance with the assigned weight aside between parenthesis, from higher to lower, in lowercase and separated with a comma in your response. Do not enumerate your solution. If you cannot give the number of keywords asked for, just stop and do not repeat them"
+                {"role": "system", "content": f"You are a helpful assistant trained to provide the most relevant keywords related to a given concept. For expample, if I ask {example_1[0]}, you will respond {example_1[1]}. Do not include the word of the topic asked for. Just provide the keywords ordered by their importance with the assigned weight aside each keyword between parenthesis. Ordered from those with higher importance to those with lower one, in lowercase and separated with a comma in your response. Do not enumerate your solution. If you cannot give the number of keywords asked for, just stop and do not repeat them"
                 },
             ],
             "temperature": temperature,
