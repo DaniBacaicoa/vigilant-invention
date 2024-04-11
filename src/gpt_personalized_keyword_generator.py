@@ -107,7 +107,7 @@ class KeywordGenerator(object):
         gpt_prompt = f"Give me a list with the most important {num_kwds} keywords related to: {Cat}"
         return self._promt(gpt_prompt)
 
-    def kwds_prompt(self, promt:str) -> str:
+    def kwds_prompt(self, cat: str, num_kwds: int) -> str:
         """Get Keywords related with a certain cathegory
 
         Parameters
@@ -121,5 +121,5 @@ class KeywordGenerator(object):
             A list of kwds 
         """
 
-        #gpt_prompt = f"Give me a list with the most important {num_kwds} keywords related to: {Cat}"
-        return self._promt(my_prompt)
+        gpt_prompt = f"A python dictionary with the {num_kwds} most relevant keywords related with '{cat}' along with their importance weight (from 0 to 10). Do not include the word itself."
+        return self._promt(gpt_prompt)
