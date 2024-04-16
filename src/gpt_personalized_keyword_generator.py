@@ -11,7 +11,7 @@ class KeywordGenerator(object):
         self,
         model,
         temperature=0.2,#ranges from 0 to 2, with lower values indicating greater determinism and higher values indicating more randomness.
-        max_tokens=1000,
+        max_tokens=4096,
         frequency_penalty=0.0 #Increasing the frequency_penalty will decrease the likelihood of repeated words and phrases in the output
     ) -> None:
         try:
@@ -121,5 +121,5 @@ class KeywordGenerator(object):
             A list of kwds 
         """
 
-        gpt_prompt = f"A python dictionary with the {num_kwds} most relevant keywords related with '{cat}' along with their importance weight (from 0 to 10). Do not include the word itself."
+        gpt_prompt = f"A python dictionary with the {num_kwds} most relevant keywords related with '{cat}' along with their importance weight (from 0 to 10). Do not include the word itself. Do not include anything esle apart from the dictionary in your response. Keywords must be concise (4 words at most), if you can't give {num_kwds} just give the ones you can and close the dictionary"
         return self._promt(gpt_prompt)
