@@ -120,6 +120,7 @@ class KeywordGenerator(object):
         str
             A list of kwds 
         """
-
-        gpt_prompt = f"A python dictionary with the {num_kwds} most relevant keywords related with '{cat}' along with their importance weight (from 0 to 10). Do not include the word itself. Do not include anything esle apart from the dictionary in your response. Keywords must be concise (4 words at most), if you can't give {num_kwds} just give the ones you can and close the dictionary"
+        min_kwds = int(0.8*num_kwds)
+        gpt_prompt = f"A python dictionary with the {num_kwds} most relevant keywords related with '{cat}' along with their importance weight (from 0 to 10). Do not include the word itself. Do not include anything esle apart from the dictionary in your response. Keywords must be concise (they're keywords!). If you are abuot to run out of tokens in your response, just close the dictionary after the last complete keyword. Do not repeat keywords"
+        #Keywords must be concise (4 words at most), if you can't give {num_kwds} just give the ones you can (try to give as much as you can but at lest {min_kwds}) and close the dictionary"
         return self._promt(gpt_prompt)
