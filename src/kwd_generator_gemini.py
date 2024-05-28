@@ -13,7 +13,7 @@ import pathlib
 class GeminiKeywordGenerator(object):
     def __init__(
             self,
-            model_name = "gemini-1.0-pro",
+            model_name = "gemini-1.5-pro",
             temperature = 0.1,
             top_p = 1,
             top_k = 1,
